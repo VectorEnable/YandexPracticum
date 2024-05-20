@@ -45,18 +45,24 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N2A-ct-d7h" userLabel="Preview Image">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N2A-ct-d7h" userLabel="Preview Image">
                                         <rect key="frame" x="0.0" y="43.666666666666686" width="390" height="585"/>
                                         <color key="backgroundColor" name="YP White"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="N2A-ct-d7h" secondAttribute="height" multiplier="2:3" id="kv6-Ns-GZB"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNb-HS-6f1">
                                         <rect key="frame" x="0.0" y="648.66666666666663" width="390" height="100.33333333333337"/>
                                         <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                         <color key="textColor" name="YP White"/>
                                         <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="G1k-L1-OZj">
                                         <rect key="frame" x="0.0" y="769" width="390" height="60"/>
@@ -106,6 +112,13 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="fNb-HS-6f1" firstAttribute="top" secondItem="N2A-ct-d7h" secondAttribute="bottom" constant="20" id="3GY-Bm-mLf"/>
+                                    <constraint firstItem="G1k-L1-OZj" firstAttribute="top" secondItem="fNb-HS-6f1" secondAttribute="bottom" constant="20" id="71O-gD-30v"/>
+                                    <constraint firstItem="fNb-HS-6f1" firstAttribute="top" secondItem="N2A-ct-d7h" secondAttribute="bottom" constant="20" id="PxG-Zt-prG"/>
+                                    <constraint firstItem="N2A-ct-d7h" firstAttribute="top" secondItem="3rd-Mi-JdS" secondAttribute="bottom" constant="20" id="u8e-Cz-ipd"/>
+                                    <constraint firstItem="fNb-HS-6f1" firstAttribute="top" secondItem="N2A-ct-d7h" secondAttribute="bottom" constant="20" id="xDd-aV-MLl"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

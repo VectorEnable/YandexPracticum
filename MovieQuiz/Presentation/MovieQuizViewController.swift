@@ -28,7 +28,7 @@ final class MovieQuizViewController: UIViewController {
 		super.viewDidLoad()
 		show(quiz: convert(model: questions[currentQuestionIndex]))
 	}
-	struct QuizQuestion {
+	private struct QuizQuestion {
 		// строка с названием фильма,
 		// совпадает с названием картинки афиши фильма в Assets
 		let image: String
@@ -52,14 +52,14 @@ final class MovieQuizViewController: UIViewController {
 		
 	}
 	
-	struct QuizStepViewModel {
+	private struct QuizStepViewModel {
 		let image: UIImage
 		let question: String
 		let questionNumber: String
 	}
 	
 	// для состояния "Результат квиза"
-	struct QuizResultsViewModel {
+	private struct QuizResultsViewModel {
 		let title: String
 		let text: String
 		let buttonText: String
@@ -72,9 +72,9 @@ final class MovieQuizViewController: UIViewController {
 		}
 		
 		imageView.layer.masksToBounds = true // даём разрешение на рисование рамки
-		imageView.layer.borderWidth = 1 // толщина рамки
+		imageView.layer.borderWidth = 8 // толщина рамки
 		imageView.layer.borderColor = isCorrect ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
-		imageView.layer.cornerRadius = 6 // радиус скругления углов рамки
+		imageView.layer.cornerRadius = 20 // радиус скругления углов рамки
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
 			self.showNextQuestionOrResults()
@@ -88,10 +88,7 @@ final class MovieQuizViewController: UIViewController {
 			let action = UIAlertAction(title: "Начать заново", style: .default, handler: {_ in
 				self.currentQuestionIndex = 0
 				self.correctAnswers = 0
-				self.imageView.layer.masksToBounds = true // даём разрешение на рисование рамки
-				self.imageView.layer.borderWidth = 1 // толщина рамки
-				self.imageView.layer.borderColor = UIColor.white.cgColor //делаем белую рамку после перехода на следующий вопрос
-				self.imageView.layer.cornerRadius = 6 // радиус скругления углов рамки
+				self.imageView.layer.borderColor = UIColor.clear.cgColor
 				
 				let firstQuestion = self.questions[self.currentQuestionIndex] // 2
 				let viewModel = self.convert(model: firstQuestion)
@@ -103,13 +100,11 @@ final class MovieQuizViewController: UIViewController {
 		} else { // 2
 			currentQuestionIndex += 1
 			// идём в состояние "Вопрос показан"
-			imageView.layer.masksToBounds = true // даём разрешение на рисование рамки
-			imageView.layer.borderWidth = 1 // толщина рамки
-			imageView.layer.borderColor = UIColor.white.cgColor //делаем белую рамку после перехода на следующий вопрос
-			imageView.layer.cornerRadius = 6 // радиус скругления углов рамки
+			
+			
 			let nextQuestion = questions[currentQuestionIndex]
 			let viewModel = convert(model: nextQuestion)
-			
+			self.imageView.layer.borderColor = UIColor.clear.cgColor
 			show(quiz: viewModel)
 		}
 	}
@@ -126,6 +121,7 @@ final class MovieQuizViewController: UIViewController {
 	@IBAction private func yesButtonClicked(_ sender: UIButton) {
 		let givenAnswer = true
 		let currentQuestion = questions[currentQuestionIndex]
+		
 		
 		showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
 	}
